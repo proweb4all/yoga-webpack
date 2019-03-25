@@ -1,18 +1,17 @@
 function calc(){
-    let inputsCalc = document.querySelectorAll('.counter-block-input, #select'),
+    let selectCalc = document.querySelector('#select'),
         inputCalc = document.querySelectorAll('.counter-block-input'),
         totalValue = document.querySelector('#total');
         totalValue.textContent = 0;
-    inputsCalc.forEach((elem) => {
-        elem.addEventListener('input', () => {
-            let res = Math.round(+inputsCalc[0].value * +inputsCalc[1].value * +inputsCalc[2].options[inputsCalc[2].selectedIndex].value * 4000);
-            animNum(totalValue, res, 50, 1000);
+    selectCalc.addEventListener('change', () => {
+        let res = Math.round(+inputsCalc[0].value * +inputsCalc[1].value * +selectCalc.value * 4000);
+        animNum(totalValue, res, 50, 1000);
         })
-    });
     inputCalc.forEach((elem) => {
         elem.addEventListener('input', function(e){ //keyup
             this.value = this.value.replace(/[^0-9]/g, '')
-            let res = Math.round(+inputsCalc[0].value * +inputsCalc[1].value * +inputsCalc[2].options[inputsCalc[2].selectedIndex].value * 4000);
+            let res = Math.round(+inputsCalc[0].value * +inputsCalc[1].value * +selectCalc.value * 4000);
+            console.log('База ', +selectCalc.value);
             animNum(totalValue, res, 50, 1000);
         });
     });
