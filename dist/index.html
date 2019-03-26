@@ -174,9 +174,9 @@
 					<div class="contact-form-title">
 						Мы с вами свяжемся
 					</div>
-					<form id="form">
-						<input required type="email" placeholder="Ваша почта">
-						<input required type="tel" placeholder="Ваш телефон" name="phone1" class="form__input" maxlength="13">
+					<form action="#" id="form">
+						<input type="text" name="email" placeholder="Ваша почта" required>
+						<input type="tel" name="phone" class="form__input" placeholder="Ваш телефон" required maxlength="12">
 						<button type="submit">Отправить</button>
 					</form>
 				</div>
@@ -220,14 +220,10 @@
 							<div class="popup-form-header">
 								Узнайте больше о своём отдыхе
 							</div>
-								<label class="popup-form__label" for="phone">
-								Введите ваш номер телефона:
-								</label> 
-								<!-- pattern="\+7\s?[\(]{0,1}9[0-9]{2}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}" -->
-								<input class="popup-form__input" name="phone" type="tel" required placeholder="Номер телефона" required maxlength="13">
-								<button class="button popup-form__btn">
-									Оставить заявку!
-								</button>
+							<label class="popup-form__label" for="phone">Введите ваш номер телефона:</label> 
+							<!-- pattern="\+7\s?[\(]{0,1}9[0-9]{2}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}" -->
+							<input class="popup-form__input" name="phone" type="tel" placeholder="Номер телефона" required maxlength="12">
+							<button class="button popup-form__btn">Оставить заявку!</button>
 						</form>
 					</div>
 	 		</div>

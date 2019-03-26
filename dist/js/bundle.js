@@ -1598,20 +1598,21 @@ function form() {
     success: 'Спасибо! Скоро мы с вами свяжемся.',
     failure: 'Что-то пошло не так...'
   };
-  var form = document.querySelector('.main-form'),
-      statusMessage = document.createElement('div');
-  statusMessage.classList.add('status');
 
   function sendForm(elem) {
     elem.addEventListener('submit', function (event) {
       event.preventDefault();
+      var statusMessage = document.createElement('div');
+      statusMessage.classList.add('status');
       elem.appendChild(statusMessage);
       var input = elem.getElementsByTagName('input'),
-          formData = new FormData(form);
+          formData = new FormData(elem);
       var obj = {};
       formData.forEach(function (value, key) {
         obj[key] = value;
-      });
+      }); //console.log('formData', formData);
+      //console.log('obj', obj);
+
       var json = JSON.stringify(obj);
 
       function postData(data) {
@@ -1655,11 +1656,10 @@ function form() {
   } // попап-формы
 
 
+  var form = document.querySelector('.main-form');
   sendForm(form); // Нижняя форма
 
   var form1 = document.querySelector('#form');
-  statusMessage = document.createElement('div');
-  statusMessage.classList.add('status');
   sendForm(form1); // Input telephone
 
   var inputTel = document.querySelectorAll('.popup-form__input, .form__input');

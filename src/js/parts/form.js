@@ -4,19 +4,20 @@ function form(){
         success: 'Спасибо! Скоро мы с вами свяжемся.',
         failure: 'Что-то пошло не так...'
     };
-    let form = document.querySelector('.main-form'),
-        statusMessage = document.createElement('div');
-        statusMessage.classList.add('status');
     function sendForm(elem) {
         elem.addEventListener('submit', function(event){
             event.preventDefault();
+            let statusMessage = document.createElement('div');
+            statusMessage.classList.add('status');
             elem.appendChild(statusMessage);
             let input = elem.getElementsByTagName('input'),
-                formData = new FormData(form);
+                formData = new FormData(elem);
             let obj = {};
             formData.forEach(function(value, key){
                 obj[key] = value;
             });
+            //console.log('formData', formData);
+            //console.log('obj', obj);
             let json = JSON.stringify(obj);
 
             function postData(data){
@@ -62,11 +63,10 @@ function form(){
         });
     }
     // попап-формы
+    let form = document.querySelector('.main-form');
     sendForm(form);
     // Нижняя форма
     let form1 = document.querySelector('#form');
-    statusMessage = document.createElement('div');
-    statusMessage.classList.add('status');
     sendForm(form1);
 
     // Input telephone
