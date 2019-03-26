@@ -14,6 +14,8 @@ function modal(){
             overlay.style.display = 'none';
             item.classList.remove('more-splash');
             document.body.style.overflow = '';
+            let messageForm = overlay.querySelector('.status');
+            if (messageForm) {messageForm.textContent = ''};
         });
     });
 }

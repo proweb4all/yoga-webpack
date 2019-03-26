@@ -4,12 +4,13 @@ function form(){
         success: 'Спасибо! Скоро мы с вами свяжемся.',
         failure: 'Что-то пошло не так...'
     };
+    let statusMessage = document.createElement('div');
+    statusMessage.classList.add('status');
+
     function sendForm(elem) {
         elem.addEventListener('submit', function(event){
             event.preventDefault();
-            let statusMessage = document.createElement('div');
-            statusMessage.classList.add('status');
-            elem.appendChild(statusMessage);
+            if (!elem.querySelector('.status')) {elem.appendChild(statusMessage)};
             let input = elem.getElementsByTagName('input'),
                 formData = new FormData(elem);
             let obj = {};
@@ -72,7 +73,7 @@ function form(){
     // Input telephone
     let inputTel = document.querySelectorAll('.popup-form__input, .form__input');
     inputTel.forEach(function(elem){
-        //elem.addEventListener('focus', () => {if(!/^\+\d*$/.test(elem.value)) elem.value = '+';});
+        elem.addEventListener('focus', () => {if(!/^\+\d*$/.test(elem.value)) elem.value = '+';});
         elem.addEventListener('keypress', e => {if(!/\d/.test(e.key)) e.preventDefault();});
     });
 

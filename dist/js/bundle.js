@@ -1598,13 +1598,18 @@ function form() {
     success: 'Спасибо! Скоро мы с вами свяжемся.',
     failure: 'Что-то пошло не так...'
   };
+  var statusMessage = document.createElement('div');
+  statusMessage.classList.add('status');
 
   function sendForm(elem) {
     elem.addEventListener('submit', function (event) {
       event.preventDefault();
-      var statusMessage = document.createElement('div');
-      statusMessage.classList.add('status');
-      elem.appendChild(statusMessage);
+
+      if (!elem.querySelector('.status')) {
+        elem.appendChild(statusMessage);
+      }
+
+      ;
       var input = elem.getElementsByTagName('input'),
           formData = new FormData(elem);
       var obj = {};
@@ -1664,7 +1669,9 @@ function form() {
 
   var inputTel = document.querySelectorAll('.popup-form__input, .form__input');
   inputTel.forEach(function (elem) {
-    //elem.addEventListener('focus', () => {if(!/^\+\d*$/.test(elem.value)) elem.value = '+';});
+    elem.addEventListener('focus', function () {
+      if (!/^\+\d*$/.test(elem.value)) elem.value = '+';
+    });
     elem.addEventListener('keypress', function (e) {
       if (!/\d/.test(e.key)) e.preventDefault();
     });
@@ -1697,6 +1704,13 @@ function modal() {
       overlay.style.display = 'none';
       item.classList.remove('more-splash');
       document.body.style.overflow = '';
+      var messageForm = overlay.querySelector('.status');
+
+      if (messageForm) {
+        messageForm.textContent = '';
+      }
+
+      ;
     });
   });
 }
@@ -1815,7 +1829,7 @@ module.exports = tabs;
 
 function timer() {
   // Timer
-  var deadline = '2019-03-28';
+  var deadline = '2019-03-27';
 
   var getTimeRemaining = function getTimeRemaining(endtime) {
     var t = Date.parse(endtime) - Date.parse(new Date()),
