@@ -73,8 +73,11 @@ function form(){
     // Input telephone
     let inputTel = document.querySelectorAll('.popup-form__input, .form__input');
     inputTel.forEach(function(elem){
-        elem.addEventListener('focus', () => {if(!/^\+\d*$/.test(elem.value)) elem.value = '+';});
-        elem.addEventListener('keypress', e => {if(!/\d/.test(e.key)) e.preventDefault();});
+        // elem.addEventListener('focus', () => {if(!/^\+\d*$/.test(elem.value)) elem.value = '+';});
+        // elem.addEventListener('keypress', e => {if(!/\d/.test(e.key)) e.preventDefault();});
+        elem.addEventListener('input', function(e){ //keyup
+            this.value = this.value.replace(/[^+0-9]/g, '')
+        });
     });
 
 }

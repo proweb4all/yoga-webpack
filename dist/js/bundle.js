@@ -1669,11 +1669,11 @@ function form() {
 
   var inputTel = document.querySelectorAll('.popup-form__input, .form__input');
   inputTel.forEach(function (elem) {
-    elem.addEventListener('focus', function () {
-      if (!/^\+\d*$/.test(elem.value)) elem.value = '+';
-    });
-    elem.addEventListener('keypress', function (e) {
-      if (!/\d/.test(e.key)) e.preventDefault();
+    // elem.addEventListener('focus', () => {if(!/^\+\d*$/.test(elem.value)) elem.value = '+';});
+    // elem.addEventListener('keypress', e => {if(!/\d/.test(e.key)) e.preventDefault();});
+    elem.addEventListener('input', function (e) {
+      //keyup
+      this.value = this.value.replace(/[^+0-9]/g, '');
     });
   });
 }
@@ -1829,7 +1829,7 @@ module.exports = tabs;
 
 function timer() {
   // Timer
-  var deadline = '2019-03-27';
+  var deadline = '2019-03-28';
 
   var getTimeRemaining = function getTimeRemaining(endtime) {
     var t = Date.parse(endtime) - Date.parse(new Date()),
