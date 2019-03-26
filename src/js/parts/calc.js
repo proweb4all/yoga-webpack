@@ -4,14 +4,13 @@ function calc(){
         totalValue = document.querySelector('#total');
         totalValue.textContent = 0;
     selectCalc.addEventListener('change', () => {
-        let res = Math.round(+inputsCalc[0].value * +inputsCalc[1].value * +selectCalc.value * 4000);
+        let res = Math.round(+inputCalc[0].value * +inputCalc[1].value * +selectCalc.value * 4000);
         animNum(totalValue, res, 50, 1000);
         })
     inputCalc.forEach((elem) => {
         elem.addEventListener('input', function(e){ //keyup
             this.value = this.value.replace(/[^0-9]/g, '')
-            let res = Math.round(+inputsCalc[0].value * +inputsCalc[1].value * +selectCalc.value * 4000);
-            console.log('База ', +selectCalc.value);
+            let res = Math.round(+inputCalc[0].value * +inputCalc[1].value * +selectCalc.value * 4000);
             animNum(totalValue, res, 50, 1000);
         });
     });

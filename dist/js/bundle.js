@@ -1548,15 +1548,14 @@ function calc() {
       totalValue = document.querySelector('#total');
   totalValue.textContent = 0;
   selectCalc.addEventListener('change', function () {
-    var res = Math.round(+inputsCalc[0].value * +inputsCalc[1].value * +selectCalc.value * 4000);
+    var res = Math.round(+inputCalc[0].value * +inputCalc[1].value * +selectCalc.value * 4000);
     animNum(totalValue, res, 50, 1000);
   });
   inputCalc.forEach(function (elem) {
     elem.addEventListener('input', function (e) {
       //keyup
       this.value = this.value.replace(/[^0-9]/g, '');
-      var res = Math.round(+inputsCalc[0].value * +inputsCalc[1].value * +selectCalc.value * 4000);
-      console.log('База ', +selectCalc.value);
+      var res = Math.round(+inputCalc[0].value * +inputCalc[1].value * +selectCalc.value * 4000);
       animNum(totalValue, res, 50, 1000);
     });
   }); // Анимация числа
@@ -1665,9 +1664,7 @@ function form() {
 
   var inputTel = document.querySelectorAll('.popup-form__input, .form__input');
   inputTel.forEach(function (elem) {
-    elem.addEventListener('focus', function () {
-      if (!/^\+\d*$/.test(elem.value)) elem.value = '+';
-    });
+    //elem.addEventListener('focus', () => {if(!/^\+\d*$/.test(elem.value)) elem.value = '+';});
     elem.addEventListener('keypress', function (e) {
       if (!/\d/.test(e.key)) e.preventDefault();
     });
